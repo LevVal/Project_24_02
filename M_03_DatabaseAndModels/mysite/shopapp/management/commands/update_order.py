@@ -16,4 +16,7 @@ class Command(BaseCommand):
         order.save()
 
         self.stdout.write(
-            self.style.SUCCESS(f'Successfully added products {order.products.all()} to order {order}'))
+            self.style.SUCCESS(
+                f'Successfully added products {order.products.all()} to order {order}'
+            )
+        )
