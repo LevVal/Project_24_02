@@ -12,16 +12,10 @@ class Product (models.Model):
     price = models.DecimalField(default=0, max_digits=8, decimal_places=2)
     discount = models.DecimalField(default=0, max_digits=8, decimal_places=2)
     created_at = models.DateTimeField(auto_now_add=True)
-    archived = models.BooleanField(default=False)
-
-#    @property
-#    def description_short(self) -> str:
-#        if len(self.description) < 40:
-#            return self.description
-#       return self.description[:40] + '...'
+    arhived_at = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"Product(pk={self.pk}, name={self.name!r})"
+        return f"Product(pk={self.pk}, name={self.name|r}"
 
 class Order(models.Model):
     delivery_address = models.TextField(null=True, blank=True)
