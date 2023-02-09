@@ -26,7 +26,7 @@ class CountRequestsMiddleware:
         self.requests_count += 1
         print('requests_count: ', self.requests_count)
         response = self.get_response(request)
-        self.check_ip(self, request: HttpRequest)
+        self.check_ip(self, request)
         self.response_count += 1
         print('response_count: ', self.response_count)
         return response
