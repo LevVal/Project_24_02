@@ -20,13 +20,13 @@ class CountRequestsMiddleware:
         self.requests_count = 0
         self.response_count = 0
         self.exception_count = 0
-        self.time = 0
 
     def __call__(self, request: HttpRequest):
         self.requests_count += 1
         print('requests_count: ', self.requests_count)
         response = self.get_response(request)
-        self.check_ip(self, request)
+        if self.check_ip(request) == False:
+            print('IP check failed. Not so fast.')
         self.response_count += 1
         print('response_count: ', self.response_count)
         return response
@@ -35,8 +35,14 @@ class CountRequestsMiddleware:
         self.exception_count += 1
         print('exception_count: ', self.exception_count)
 
-    def check_ip(self, request: HttpRequest):
-        time_out = datetime.datetime.now() - self.time
+    def check_ip(self, request):
+        print('remote;', request.META['REMOTE_ADDR'])
+
+        #print(type(datetime.datetime.now()))
+
+        #if self.time_out < datetime.timedelta(seconds=int(datetime.datetime.now().strftime("%S"))):
+        return False
+
         ##if time_out > datetime.timedelta(minutes=1):
             #print('time out', datetime.timedelta(minutes=1))
         #print('get_ip: ', ip, datetime.datetime.now())
