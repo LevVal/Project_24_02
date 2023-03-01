@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'odc=ssa=%w55@cki-acmvufyvtmv7vigo26b3ehjna4brfwm2p'
+SECRET_KEY = '^w+lp+#v)us!uh8^d%%20cu8t&76q=v@i=btef7s-i&!tv2c*0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,12 +35,10 @@ INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'shopapp.apps.ShopappConfig',
     'requestdataapp.apps.RequestdataappConfig',
-    #'M_03_DatabaseAndModels.mysite.requestdataapp.apps.RequestdataappConfig',
+    'shopapp.apps.ShopappConfig',
 ]
 
 MIDDLEWARE = [
@@ -51,11 +49,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'M_03_DatabaseAndModels.mysite.requestdataapp.middleware.set_useragent_on_request_middleware',
-    #'M_03_DatabaseAndModels.mysite.requestdataapp.middleware.CountRequestsMiddleware',
-    'requestdataapp.middleware.set_useragent_on_request_middleware',
-    'requestdataapp.middleware.CountRequestsMiddleware',]
-
+    'requestdataapp.middlewares.set_useragent_request_middleware',
+    'requestdataapp.middlewares.CountRequestsMiddleware',
+    'requestdataapp.middlewares.ThrottlingMiddleware',
+]
 
 ROOT_URLCONF = 'mysite.urls'
 
